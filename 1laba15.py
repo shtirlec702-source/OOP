@@ -44,7 +44,7 @@ def parse_currency_string(line):
                 continue
 
     if rate_val is None or date_val is None:
-        raise ValueError("Не найден курс (число) или дата (гггг.мм.дд)")
+        raise ValueError("Не найден курс или дата (гггг.мм.дд)")
 
     return CurrencyRate(found_strings[0], found_strings[1], rate_val, date_val)
 
@@ -57,6 +57,5 @@ while True:
         obj = parse_currency_string(user_input)
         print("Объект создан успешно!")
         print(obj)
-        
     except Exception as e:
         print(f"Ошибка: {e}")
