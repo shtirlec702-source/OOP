@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from datetime import datetime
 import sv_ttk  
+from tkhtmlview import HTMLLabel  #  HTML
 
 class CurrencyRate:
     def __init__(self, currency_from: str, currency_to: str, rate: float, rate_date: datetime.date):
@@ -93,6 +94,16 @@ class CurrencyApp(tk.Tk):
         
         self.tree.pack(expand=True, fill=tk.BOTH, padx=15, pady=5)
 
+
+           # Нижний блок с добавлением и кнопкой HTML
+        bottom_frame = ttk.Frame(self)
+        bottom_frame.pack(pady=15, fill=tk.X, padx=15)
+
+        # --- НАША НОВАЯ КНОПКА ДЛЯ HTML-ОКНА ---
+        btn_html = ttk.Button(bottom_frame, text="Справка (HTML)", command=self.open_html_window)
+        btn_html.pack(side=tk.LEFT, padx=(0, 15))
+        # ---------------------------------------
+
         
         bottom_frame = ttk.Frame(self)
         bottom_frame.pack(pady=15, fill=tk.X, padx=15)
@@ -106,6 +117,41 @@ class CurrencyApp(tk.Tk):
         
         btn_add = ttk.Button(bottom_frame, text="Добавить", command=self.add_record)
         btn_add.pack(side=tk.RIGHT)
+
+    # --- ФУНКЦИЯ СОЗДАНИЯ НОВОГО ОКНА ---
+    def open_html_window(self):
+        # Создаем дочернее окно (Toplevel) поверх основного
+        html_win = tk.Toplevel(self)
+        html_win.title("Справка")
+        html_win.geometry("750x650")
+        # Делаем так, чтобы окно не теряло фокус 
+        html_win.transient(self)
+        html_win.grab_set()
+
+        image_url = "https://kartinka.top/files/collections/107/p720.jpg"
+       
+        my_html_content = f"""
+        <div style="text-align: center;">
+            <a href="{image_url}">
+                <img src="{image_url}" title="{image_url}" width="100%" height="400">
+            </a>
+            <br>
+        <h1 style="color: #000000; text-align: center;">Справка</h1>
+        <p>Эта программа предназначена для <b>управления курсами валют</b>.</p>
+          <div style="text-align: center;">
+            <img src="b6fc0514cabfa0f434278903084c594c-3419148314.jpg" > </div>
+        """
+
+
+        
+        html_label = HTMLLabel(html_win, html=my_html_content)
+        html_label.pack(expand=True, fill=tk.BOTH, padx=15, pady=10)
+
+       
+        btn_close = ttk.Button(html_win, text="Закрыть", command=html_win.destroy)
+        btn_close.pack(pady=10)
+    # ------------------------------------
+
 
     def update_table(self):
         for item in self.tree.get_children():
