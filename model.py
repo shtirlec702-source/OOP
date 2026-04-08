@@ -26,7 +26,7 @@ class CurrencyRate:
         return f"Курс: {self.currency_from} = {self.rate} {self.currency_to} (Дата: {self.date})"
 
 class CurrencyModel:
-    """Модель, управляющая списком курсов и бизнес-логикой."""
+    """Класс, управляющий списком курсов и бизнес-логикой."""
     def __init__(self):
         self.rates: list[CurrencyRate] = []
 
