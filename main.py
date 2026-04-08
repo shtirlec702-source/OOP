@@ -7,9 +7,9 @@ from model import CurrencyModel, ParseError # Подключаем нашу мо
 class CurrencyApp(tk.Tk):
     def __init__(self, model: CurrencyModel):
         super().__init__()
-        self.model = model  # Сохраняем ссылку на модель
+        self.model = model  #  ссылкa на модель
         self.title("Управление курсами валют")
-        self.geometry("700x550")
+        self.geometry("700x500")
         self.resizable(False, False)
         self._create_widgets()
         self.update_table()
@@ -54,7 +54,7 @@ class CurrencyApp(tk.Tk):
     def open_html_window(self):
         html_win = tk.Toplevel(self)
         html_win.title("Справка")
-        html_win.geometry("750x650")
+        html_win.geometry("900x800")
         html_win.transient(self)
         html_win.grab_set()
 
@@ -62,7 +62,7 @@ class CurrencyApp(tk.Tk):
         my_html_content = f"""
         <div style="text-align: center;">
             <a href="{image_url}">
-                <img src="{image_url}" title="{image_url}" width="100%" height="400">
+                <img src="{image_url}" title="{image_url}" width="100%" height="100%">
             </a>
             <br>
         <h1 style="color: #000000; text-align: center;">Справка</h1>
