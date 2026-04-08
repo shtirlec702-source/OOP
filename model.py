@@ -11,8 +11,11 @@ logging.basicConfig(
 )
 
 class ParseError(Exception):
-    """Пользовательское исключение для ошибок парсинга строки валют."""
-    pass
+    """Пользовательское исключение для ошибок парсинга."""
+    def __init__(self, message):
+        super().__init__(message)
+        # Автоматически пишем в лог при любом возникновении этой ошибки
+        logging.warning(f"Ошибка парсинга: {message}")
 
 class CurrencyRate:
     """Класс для хранения информации об одном курсе валюты."""
@@ -34,7 +37,9 @@ class CurrencyModel:
         """Парсит строку и возвращает объект CurrencyRate. Выбрасывает ParseError при ошибке."""
         line = line.strip()
         if not line:
+            
             raise ParseError("Пустая строка")
+            
 
         # 1. Извлекаем валюты
         currencies = re.findall(r'"([^"]+)"', line)
@@ -86,7 +91,8 @@ class CurrencyModel:
                     success_count += 1
                 except ParseError as e:
                     # Логируем ошибку, программа продолжает работу
-                    logging.warning(f"Ошибка в строке {line_num}: {e}")
+                    # logging.warning(f"Ошибка в строке {line_num}: {e}")
+                    pass
         return success_count
 
     def add_record(self, line: str):
