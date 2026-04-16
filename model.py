@@ -2,7 +2,6 @@ import re
 import logging
 from datetime import datetime
 
-# Настройка логирования: некорректные строки будут записываться в файл errors.log
 logging.basicConfig(
     filename='errors.log',
     level=logging.WARNING,
@@ -11,10 +10,10 @@ logging.basicConfig(
 )
 
 class ParseError(Exception):
-    """Пользовательское исключение для ошибок парсинга."""
+    
     def __init__(self, message):
         super().__init__(message)
-        # Автоматически пишем в лог при любом возникновении этой ошибки
+        
         logging.warning(f"Ошибка парсинга: {message}")
 
 class CurrencyRate:
@@ -74,11 +73,7 @@ class CurrencyModel:
         return CurrencyRate(curr_from, curr_to, rate_val, date_val)
 
     def load_from_file(self, filepath: str) -> int:
-        """
-        Читает файл построчно. Корректные строки добавляет, 
-        некорректные пропускает и пишет в лог.
-        Возвращает количество успешно добавленных записей.
-        """
+        
         success_count = 0
         with open(filepath, 'r', encoding='utf-8') as file:
             for line_num, line in enumerate(file, 1):
