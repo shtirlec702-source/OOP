@@ -1,0 +1,14 @@
+# Файл команд для программы курсов валют
+# Формат: ADD from,to,rate,гггг.мм.дд
+#         REM <поле> <оператор> <значение>
+#         SAVE <путь_к_файлу>
+#          ADD Name, Country, money
+
+ADD USD,RUB,92.5,2026.02.15
+ADD EUR,RUB,100.2,2026.02.16
+ADD GBP,USD,1.25,2026.01.17
+ADD CNY,RUB,12.8,2026.03.01
+
+REM rate < 10
+REM money < 100
+SAVE saved_rates.txt

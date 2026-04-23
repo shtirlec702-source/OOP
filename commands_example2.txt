@@ -1,0 +1,22 @@
+# Файл команд для программы курсов валют
+# Формат ADD:  from,to,rate,гггг.мм.дд  (4 поля → курс)
+#              name,country,money         (3 поля → персона)
+# REM поля курсов:  rate, currency_from, currency_to, date
+# REM поля персон:  money, country, name
+# Операторы: == != < > <= >=
+
+ADD USD,RUB,92.5,2026.02.15
+ADD EUR,RUB,100.2,2026.02.16
+ADD GBP,USD,1.25,2026.01.17
+ADD CNY,RUB,12.8,2026.03.01
+
+ADD Artem,RU,1000
+ADD Ivan,RU,500
+ADD John,US,2500
+ADD Maria,DE,80
+
+REM rate < 10
+REM money < 100
+# REM country == RU
+# REM name == John
+SAVE saved_rates.txt
